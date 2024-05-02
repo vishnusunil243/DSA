@@ -118,13 +118,25 @@ func isValidBst(node *Node, min, max int) bool {
 	}
 	return isValidBst(node.left, min, node.key) && isValidBst(node.right, node.key, max)
 }
+func height(node *Node) int {
+	if node == nil {
+		return 0
+	}
+	left := height(node.left)
+	right := height(node.right)
+	if left > right {
+		return left + 1
+	}
+	return right + 1
+}
 func main() {
 	t := Tree{}
 	arr := []int{100, 18, 22, 23, 44, 16, 101}
 	for _, num := range arr {
 		t.Insert(num)
 	}
-	fmt.Println(closest(t.Root, 101))
-	fmt.Println(IsValidBst(t.Root))
+	// fmt.Println(closest(t.Root, 101))
+	// fmt.Println(IsValidBst(t.Root))
+	fmt.Println(height(t.Root))
 
 }
